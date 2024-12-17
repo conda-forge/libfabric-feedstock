@@ -28,6 +28,7 @@ fi
     --mandir=$PWD/noinst/man \
     $build_with_libnl \
     --disable-static \
+    --disable-lpp \
     --disable-psm3 \
     --disable-opx
 
