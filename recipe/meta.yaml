@@ -1,5 +1,5 @@
-{% set version = "2.0.0" %}
-{% set build = 1 %}
+{% set version = "2.1.0" %}
+{% set build = 0 %}
 
 # when abi version increments, update the lower bound
 # check https://ofiwg.github.io/libfabric/main/man/fabric.7.html#abi-changes
@@ -13,7 +13,7 @@ package:
 
 source:
   url: https://github.com/ofiwg/libfabric/releases/download/v{{ version }}/libfabric-{{ version }}.tar.bz2
-  sha256: 1a8e40f1f331d6ee2e9ace518c0088a78c8a838968f8601c2b77fd012a7bf0f5
+  sha256: 97df312779e2d937246d2f46385b700e0958ed796d6fed7aae77e2d18923e19f
 
 build:
   number: {{ build }}
@@ -51,7 +51,7 @@ outputs:
         - test -f $PREFIX/lib/libfabric.so.{{ soversion }}  # [linux]
         - test -f $PREFIX/lib/libfabric.{{ soversion }}.dylib  # [osx]
         - test ! -f $PREFIX/lib/libfabric${SHLIB_EXT}
-  
+
   - name: libfabric
     # empty metapackage for mutual exclusivity and backward-compatiblity
     # ensures only one libfabric{so} per env
@@ -61,7 +61,6 @@ outputs:
     test:
       commands:
         - "true"
-    
   - name: libfabric-bin
     files:
       include:
