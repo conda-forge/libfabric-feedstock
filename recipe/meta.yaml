@@ -1,5 +1,5 @@
-{% set version = "2.3.1" %}
-{% set build = 1 %}
+{% set version = "2.4.0" %}
+{% set build = 0 %}
 
 # when abi version increments, update the lower bound
 # check https://ofiwg.github.io/libfabric/main/man/fabric.7.html#abi-changes
@@ -13,7 +13,7 @@ package:
 
 source:
   url: https://github.com/ofiwg/libfabric/releases/download/v{{ version }}/libfabric-{{ version }}.tar.bz2
-  sha256: 2e939f17ce4d30a999d0445f741d3055b19dfd894eff70450e23470fe774f35a
+  sha256: 13f508e1d770c44f872c4117d9bcbfc102dc9d7532d3292455e0e0e5ef7b3bba
 
 build:
   number: {{ build }}
