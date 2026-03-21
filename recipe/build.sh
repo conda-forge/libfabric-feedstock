@@ -7,7 +7,7 @@ CURRENT_ABI=$(cat libfabric.map.in| grep -o '^FABRIC_[[:digit:]\.]\+' | tail -n 
 echo "CURRENT_ABI=${CURRENT_ABI}"
 
 if [[ "$CURRENT_ABI" != "FABRIC_$LIBFABRIC_ABI" ]]; then
-  echo "CURRENT_ABI=${CURRENT_ABI} != FABRIC_${$LIBFABRIC_ABI}"
+  echo "CURRENT_ABI=${CURRENT_ABI} != FABRIC_${LIBFABRIC_ABI}"
   exit 1
 fi
 
