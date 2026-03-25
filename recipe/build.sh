@@ -2,6 +2,9 @@
 
 set -ex
 
+# validate POSIX-safety of activate script (no bash-isms)
+shellcheck -s sh $RECIPE_DIR/libfabric_activate.sh
+
 # verify ABI version
 CURRENT_ABI=$(cat libfabric.map.in| grep -o '^FABRIC_[[:digit:]\.]\+' | tail -n 1)
 echo "CURRENT_ABI=${CURRENT_ABI}"
@@ -40,3 +43,5 @@ fi
 
 make install
 
+mkdir -p $PREFIX/etc/conda/activate.d
+cp -v $RECIPE_DIR/libfabric_activate.sh $PREFIX/etc/conda/activate.d/
