@@ -1,5 +1,5 @@
 {% set version = "1.19.1" %}
-{% set build = 6 %}
+{% set build = 7 %}
 
 # when abi version increments, update the lower bound
 # check https://ofiwg.github.io/libfabric/main/man/fabric.7.html#abi-changes
@@ -28,6 +28,7 @@ requirements:
     - libtool  # [unix]
     - make  # [unix]
     - pkg-config
+    - shellcheck
   host:
     - libnl  # [linux]
     - rdma-core  # [linux]
@@ -38,6 +39,7 @@ outputs:
       include:
         - lib/lib*.so.*  # [linux]
         - lib/lib*.*.dylib  # [osx]
+        - etc/conda/activate.d/*.sh
     requirements:
       # need everything with run_exports here
       build:
@@ -51,7 +53,9 @@ outputs:
         - test -f $PREFIX/lib/libfabric.so.{{ soversion }}  # [linux]
         - test -f $PREFIX/lib/libfabric.{{ soversion }}.dylib  # [osx]
         - test ! -f $PREFIX/lib/libfabric${SHLIB_EXT}
-  
+        # test activation
+        - if [ "$FI_PROVIDER" != "tcp" ]; then exit 1; fi
+
   - name: libfabric
     # empty metapackage for mutual exclusivity and backward-compatiblity
     # ensures only one libfabric{so} per env
