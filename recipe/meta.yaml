@@ -4,7 +4,7 @@
 # when abi version increments, update the lower bound
 # check https://ofiwg.github.io/libfabric/main/man/fabric.7.html#abi-changes
 {% set soversion = "1" %}
-{% set abi_version = "1.9" %}
+{% set abi_version = "1.10" %}
 {% set abi_lower_bound = "2.0.0" %}
 
 package:
